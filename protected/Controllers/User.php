@@ -37,14 +37,15 @@ class User
     {
         if( null !== $signUp ) {
             try {
+                $this->data->signup = $signUp;
                 $auth = new Identity();
                 $auth->register($signUp);
                 $this->redirect('/login.html');
             } catch (\T4\Core\MultiException $e) {
                 $this->data->errors = $e;
-                $this->data->signup = $signUp;
+            } catch (MultiException $errors) {
+                $this->data->errors = $errors;
             }
-
         }
     }
 }

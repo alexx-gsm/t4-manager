@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use T4\Orm\Model;
-use App\Components\Auth\Exception;
+use T4\Core\Exception;
 
 class User extends Model
 {
@@ -36,6 +36,7 @@ class User extends Model
     {
         return $this->validateName($val, 'Имя');
     }
+    
     protected function validateLastName($val)
     {
         return $this->validateName($val, 'Фамилия');

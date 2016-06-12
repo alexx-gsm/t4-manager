@@ -4,7 +4,6 @@ namespace App\Components\Auth;
 
 use App\Models\User;
 use App\Models\UserSession;
-use T4\Core\MultiException;
 use T4\Http\Helpers;
 
 class Identity
@@ -82,8 +81,13 @@ class Identity
         if( !$errors->isEmpty() ) {
             throw $errors;
         }
-        
-        if( !empty(User::findByEmail($data->email)) ) {
+
+        try {
+            $user = User::findByEmail($data->email);
+        } catch (Exception $w) {
+            var_dump($w); die;
+        }
+        if( !empty($user) ) {
             $errors->add( new Exception('Такой email уже зарегистрирован') );
         }
 
@@ -94,8 +98,8 @@ class Identity
         $user = new User();
         try {
             $user->fill($data);
-        } catch (MultiException $e) {
-            throw $e;
+        } catch (\T4\Core\MultiException $errors) {
+            throw $errors;
         }
 
         $user->password = password_hash($data->password, PASSWORD_DEFAULT);
