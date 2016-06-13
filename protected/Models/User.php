@@ -20,7 +20,7 @@ class User extends Model
 
     protected function validatePassword($val)
     {
-        if( 6 > mb_strlen($val) ) {
+        if( 6 >= mb_strlen($val) ) {
             yield new Exception("Пароль должен быть больше 6 символов");
         }
         return true;
@@ -46,7 +46,7 @@ class User extends Model
         if( !preg_match('~[a-zA-Zа-яА-Я]~', $val)) {
             yield new Exception($str . " только из букв");
         }
-        if( 3 > mb_strlen($val) ) {
+        if( 3 >= mb_strlen($val) ) {
             yield new Exception($str . " больше 3 букв");
         }
         return true;
