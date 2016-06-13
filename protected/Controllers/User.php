@@ -11,6 +11,10 @@ class User
 {
     public function actionLogin($login = null)
     {
+        if (isset($this->app->flash->error)) {
+            $this->data->error = $this->app->flash->error;
+        }
+        
         if (null !== $login) {
             try {
                 $auth = new Identity();
@@ -29,8 +33,18 @@ class User
         $this->redirect('/login.html');
     }
 
-    public function actionSignup()
+    public function actionSignup($signUp = null)
     {
-        
+        if( null !== $signUp ) {
+            try {
+                $auth = new Identity();
+                $auth->register($signUp);
+                $this->redirect('/login.html');
+            } catch (MultiException $e) {
+                $this->data->errors = $e;
+                $this->data->signup = $signUp;
+            }
+
+        }
     }
 }

@@ -1,0 +1,48 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <img src="/images/signin.png" alt="" class="pull-left tab-header">
+                <p class="tab-header">&nbsp;</p>
+            </div>
+            <div class="panel-body">
+                {% for error in errors %}
+                <div class="alert alert-danger">
+                    {{ error.message }}
+                </div>
+                {% endfor %}
+                <form class="form-horizontal" action="/user/signup.html" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="firstName">*Имя:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="firstName" placeholder="Имя" name="signUp[firstName]" value="{{ signup.firstName }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="lastName">Фамилия:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="lastName" placeholder="Фамилия" name="signUp[lastName]" value="{{ signup.lastName }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="email">*Email:</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" placeholder="Email" name="signUp[email]" value="{{ signup.email }}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="pass">*Пароль:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="pass" placeholder="Пароль" name="signUp[password]" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-info pull-right">Зарегистрироваться</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

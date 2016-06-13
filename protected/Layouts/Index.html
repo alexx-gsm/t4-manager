@@ -4,29 +4,33 @@
   <meta charset="UTF-8">
   <title>{{ extraTitle }}{{ app.config.title }}</title>
 
+  {{ publish('/Layouts/assets') }}
+
+  <!--Favicon-->
+  <link rel="icon" href="{{ asset('/Layouts/assets/img/favicon.ico') }}">
   <!-- Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Comfortaa&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
-
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css"></head>
+  <link rel="stylesheet" href="{{ asset('/Layouts/assets/css/bootstrap.min.css') }}"></head>
   <!-- Latest compiled and minified CSS BOOTSTRAP-SELECT -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="{{ asset('/Layouts/assets/css/bootstrap-select.min.css') }}">
 <!-- Custom CSS -->
-<link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="{{ asset('/Layouts/assets/css/main.css') }}">
 
 <body>
 <!-- NAV BAR -->
 <div class="navbar navbar-default">
   <div class="container">
+    <span class="logo pull-left"><img src="{{ asset('/Layouts/assets/img/drop.png') }}" alt=""></span>
     {% if app.user %}
     <ul class="nav navbar-nav">
       <li><a href="/orders.html">Заказы</a></li>
       <li><a href="/objects.html">Объекты</a></li>
       <li><a href="/actions.html">Услуги</a></li>
-      <li><a href="/category.html">Категории</a></li>
+      <li><a href="/categories.html">Категории</a></li>
       <li><a href="/customs.html">Клиенты</a></li>
-      <li><a href="/card.html">Карты</a></li>
+      <li><a href="/cards.html">Карты</a></li>
     </ul>
     <a href="/logout" role="button" class="btn btn-default btn-md pull-right">
       <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
@@ -49,11 +53,11 @@
 <div class="container">
   {% block content %}{% endblock %}
 </div><!-- END of MAIN CONTAINER-->
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+{{ publishJs() }}
+
+<!--<script src="{{ asset('/Layouts/assets/js/bootstrap.min.js') }}"></script>-->
+<script src="{{ asset('/Layouts/assets/js/bootstrap-select.min.js') }}"></script>
 
 </body>
 </html>

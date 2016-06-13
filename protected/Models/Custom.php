@@ -34,20 +34,20 @@ class Custom extends Model
 
     protected function validateName_last($val)
     {
-        return $this->validateName($val);
+        return $this->validateName($val, 'Фамилия');
     }
     protected function validateName_first($val)
     {
-        return $this->validateName($val);
+        return $this->validateName($val, 'Имя');
     }
 
-    protected function validateName($val)
+    protected function validateName($val, $str)
     {
         if( !preg_match('~[a-zA-Zа-яА-Я]~', $val)) {
-            yield new Exception("Фамилия/имя только из букв");
+            yield new Exception($str . " только из букв!");
         }
         if( 3 > mb_strlen($val) ) {
-            yield new Exception("Фамилия/имя должны содержать больше 3 букв");
+            yield new Exception("$str . больше 3 букв!");
         }
         return true;
     }

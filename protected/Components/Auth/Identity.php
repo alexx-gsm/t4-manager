@@ -4,7 +4,6 @@ namespace App\Components\Auth;
 
 use App\Models\User;
 use App\Models\UserSession;
-use T4\Html\Form\Errors;
 use T4\Http\Helpers;
 
 class Identity
@@ -18,7 +17,7 @@ class Identity
         }
 
         if( empty($data->password) ) {
-            $errors->add( new Exception('пустой пароль'));
+            $errors->add( new Exception('Пустой пароль'));
         }
 
         if( !$errors->isEmpty() ) {
@@ -67,4 +66,33 @@ class Identity
         return null;
     }
 
+    public function register($data)
+    {
+        $errors = new MultiException();
+
+        if( empty($data->email) ) {
+            $errors->add( new Exception('Пустой email'));
+        }
+
+        if( empty($data->password) ) {
+            $errors->add( new Exception('Пустой пароль'));
+        }
+
+        if( !$errors->isEmpty() ) {
+            throw $errors;
+        }
+        
+        if( !empty(User::findByEmail($data->email)) ) {
+            $errors->add( new Exception('Такой email уже зарегистрирован'));
+        }
+
+        if( !$errors->isEmpty() ) {
+            throw $errors;
+        }
+        
+        $user = new User();
+        $user->fill($data);
+        $user->password = password_hash($data->password, PASSWORD_DEFAULT);
+        $user->save();
+    }
 }

@@ -1,0 +1,112 @@
+html, body {
+    height: 100%;
+}
+body {
+    background: url('/www/public/images/bground.jpg') 100% 100% no-repeat fixed;
+    background-size: cover;
+}
+#brand a {
+    padding: 0 15px;
+    font-size: 30px;
+    color: #9B4646 !important;
+    font-family: 'Comfortaa', cursive;
+    text-decoration: none;
+}
+.tab-header {
+    font-size: 20px;
+    font-weight: 100;
+    color: whitesmoke !important;
+    font-family: 'Comfortaa', cursive;
+}
+img.tab-header {
+    margin: -10px 10px 0 -15px;
+}
+
+#brand a:hover {
+    text-decoration: none;
+    color: #752424;
+    text-shadow: #ccc 1px 1px;
+}
+.navbar {
+    border-radius: 0;
+}
+
+.btn-ok {
+    margin: 0 20px 30px 0;
+}
+.panel-success>.panel-heading a{
+    color: #3c763d !important;
+}
+.panel-danger>.panel-heading a{
+    color: #a94442 !important;
+}
+.panel-info>.panel-heading a{
+    color: #31708f !important;
+}
+.panel-warning>.panel-heading a{
+    color: #8a6d3b !important;
+}
+.panel-primary>.panel-heading a{
+    color: #fff !important;
+}
+.panel-heading a {
+    text-decoration: none;
+}
+.panel-heading a:hover,
+.panel-heading a:active {
+    text-decoration: none;
+    color: #f89406;
+}
+/* Table style */
+.table {
+    margin-bottom: 0 !important;
+    border-collapse: collapse;
+    border-spacing: 0;
+    vertical-align: middle !important;
+}
+.table-main th , .table-main td {
+    text-align: center;
+}
+.table thead, tr.bold{
+    text-transform: uppercase;
+    background-color: #752424 !important;
+    color: whitesmoke;
+    font-size: 12px !important;
+    border: 1px solid #752424;
+    text-decoration: none;
+}
+.table-main tbody {
+    border: 1px solid #752424;
+}
+.table-main tbody tr td {
+    cursor: pointer;
+    font-size: 14px;
+    vertical-align: middle !important;
+}
+.table-main tbody tr:not(.no-point):hover {
+    background: rgba(155, 70, 70, 0.35) !important;
+}
+.table-main tbody tr:nth-child(odd) {
+    background-color: #3e444c;
+}
+tr.no-point td {
+    cursor: default !important;
+}
+td label {
+    margin: 0 !important;
+}
+.table-left {
+    text-align: left !important;
+    padding-left: 10px !important;
+}
+
+
+/* MAIN NAVIGATION*/
+.logo {
+    padding-right: 20px;
+}
+.separator {
+    padding: 15px;
+    width: 30px;
+    line-height: 20px;
+}
