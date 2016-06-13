@@ -83,7 +83,7 @@ class Identity
         }
         
         if( !empty(User::findByEmail($data->email)) ) {
-            $errors->add( new Exception('Такой email уже зарегистрирован'));
+            $errors->add( new Exception('Такой email уже зарегистрирован') );
         }
 
         if( !$errors->isEmpty() ) {
