@@ -87,7 +87,7 @@ img.tab-header {
     background: rgba(155, 70, 70, 0.35) !important;
 }
 .table-main tbody tr:nth-child(odd) {
-    background-color: #3e444c;
+    background-color: whitesmoke;
 }
 tr.no-point td {
     cursor: default !important;
