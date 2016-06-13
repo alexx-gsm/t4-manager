@@ -20,4 +20,15 @@ class Index
         }
     }
 
+    public function action404()
+    {
+        $this->app->flash->error = '404: Запрашиваемая страница не найдена';
+        $this->redirect('/login.html');
+    }
+
+    public function action403()
+    {
+        $this->app->flash->error = '403: Доступ запрещен. Только для авторизованных пользователей\'';
+        $this->redirect('/login.html');
+    }
 }

@@ -18,6 +18,11 @@ return [
             'location'  => 'local',
             'theme'     => 'cerulean',
         ],
+    ],
+    
+    'errors' => [
+        404 => '///404',
+        403 => '///403'
     ]
 
 ];
