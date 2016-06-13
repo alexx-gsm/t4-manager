@@ -4,6 +4,7 @@ namespace App\Components\Auth;
 
 use App\Models\User;
 use App\Models\UserSession;
+use T4\Core\MultiException;
 use T4\Http\Helpers;
 
 class Identity
@@ -91,7 +92,12 @@ class Identity
         }
         
         $user = new User();
-        $user->fill($data);
+        try {
+            $user->fill($data);
+        } catch (MultiException $e) {
+            throw $e;
+        }
+
         $user->password = password_hash($data->password, PASSWORD_DEFAULT);
         $user->save();
     }

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use T4\Orm\Model;
-use T4\Core\Exception;
+use App\Components\Auth\Exception;
 
 class User extends Model
 {

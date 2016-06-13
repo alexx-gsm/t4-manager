@@ -40,7 +40,7 @@ class User
                 $auth = new Identity();
                 $auth->register($signUp);
                 $this->redirect('/login.html');
-            } catch (MultiException $e) {
+            } catch (\T4\Core\MultiException $e) {
                 $this->data->errors = $e;
                 $this->data->signup = $signUp;
             }
