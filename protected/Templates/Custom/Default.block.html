@@ -1,0 +1,12 @@
+<select class="form-control selectpicker show-tick" name="form[custom_id]" id="custom" >
+    <option>-</option>
+    {% for custom in customs %}
+    <option value="{{ custom.pk }}"
+        {% if custom.pk == custom_id %}
+        selected
+        {% endif %}>
+
+    {{ custom.name_last }} {{ custom.name_first }} {{ custom.name_middle }}
+    </option>
+    {% endfor %}
+</select>

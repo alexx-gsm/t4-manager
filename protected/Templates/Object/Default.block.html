@@ -1,0 +1,12 @@
+<select class="form-control selectpicker show-tick" name="form[object_id]" id="object" >
+    <option value="0">-</option>
+    {% for object in objects %}
+    <option value="{{ object.pk }}"
+        {% if object.pk == object_id %}
+        selected
+        {% endif %}>
+
+    {{ object.title }}: {{ object.street }}, {{ object.building }}-{{ object.office }}
+    </option>
+    {% endfor %}
+</select>

@@ -1,0 +1,36 @@
+{% if order_id > 0 %}
+    <hr>
+    <p  class="tab-header">
+        <a class="btn btn-primary pull-right" href="/work/edit/{{ order_id }}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Добавить услугу
+        </a>
+    </p>
+    <div style="clear: both;"></div>
+    <hr>
+
+    <table class="table table-main">
+        <thead>
+            <tr>
+                <th width="40%" class="table-left">Услуга</th>
+                <th width="20%">Цена</th>
+                <th width="10%">Кол-во, ед</th>
+                <th width="20%">Всего</th>
+                <th width="10%">Tools</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for work in works %}
+            <tr onclick="window.location='http://' + window.location.hostname + '/work/edit/{{ order_id }}/{{ work.pk }}'">
+                <td class="table-left">{{ work.action.title }}</td>
+                <td>{{ work.price }} <span class="glyphicon glyphicon-ruble" aria-hidden="true"></span></td>
+                <td>{{ work.count }}</td>
+                <td>{{ work.price * work.count }} <span class="glyphicon glyphicon-ruble" aria-hidden="true"></span></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+
+{% endif %}

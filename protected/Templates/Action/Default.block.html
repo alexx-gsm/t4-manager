@@ -1,0 +1,12 @@
+<select id="actions" class="form-control selectpicker show-tick" name="form[action_id]">
+    <option value="0">-</option>
+    {% for action in actions %}
+    <option value="{{ action.pk }}"  data-subtext="{{ action.category.title }}"
+        {% if action.pk == action_id %}
+            selected
+        {% endif %}
+    >
+        {{ action.title }}
+    </option>
+    {% endfor %}
+</select>

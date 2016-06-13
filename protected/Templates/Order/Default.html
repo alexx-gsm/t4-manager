@@ -1,0 +1,45 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><img src="/images/orders.jpg" alt="" class="pull-left tab-header">
+            <p class="tab-header">
+                Заказы
+                <a href="/order/edit" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Добавить
+                </a>
+            </p>
+        </div>
+
+        <div class="panel-body">
+
+            <table class="table table-main">
+                <thead>
+                    <tr>
+                        <th width="40%">Объект</th>
+                        <th width="20%">Клиент</th>
+                        <th width="20%">Всего</th>
+                        <th width="10%">Дата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr onclick="window.location='http://' + window.location.hostname + '/order/edit/{{ order.pk }}.html'">
+                        <td>{{ order.object.title }}: {{ order.object.street }}, {{ order.object.building }}-{{ order.object.office }}</td>
+                        <td>{{ order.custom.name_last }} {{ order.custom.name_first }} {{ order.custom.name_middle }}</td>
+                        <td>{{ order.total }} <span class="glyphicon glyphicon-ruble" aria-hidden="true"></span></td>
+                        <td>{{ order.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

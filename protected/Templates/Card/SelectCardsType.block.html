@@ -1,0 +1,11 @@
+<select id="type" class="form-control selectpicker" name="form[type]">
+    {% for i in range(low=5, high=20, step=5) %}
+    <option
+            {% if card.type == i %}
+                selected
+            {% endif%}
+    >
+        {{ i }}%
+    </option>
+    {% endfor %}
+</select>

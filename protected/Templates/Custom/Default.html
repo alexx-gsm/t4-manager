@@ -1,0 +1,45 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><img src="/images/clients.jpg" alt="" class="pull-left tab-header">
+            <p class="tab-header">
+                Клиенты
+                <a href="/custom/edit" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Добавить
+                </a>
+            </p>
+        </div>
+
+        <div class="panel-body">
+            <!-- Table -->
+            <table class="table table-main">
+                <thead>
+                <tr>
+                    <th width="50%">ФИО</th>
+                    <th width="15%">Телефон</th>
+                    <th width="15%">e-mail</th>
+                    <th width="20%">карта</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for custom in customs %}
+                <tr onclick="window.location='http://' + window.location.hostname + '/custom/edit/{{ custom.pk }}'">
+                    <td>{{ custom.name_last }} {{ custom.name_first }} {{ custom.name_middle }}</td>
+                    <td>{{ custom.phone }}</td>
+                    <td>{{ custom.email }}</td>
+                    <td>{{ custom.card.number }}  ({{ custom.card.type }}%)</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

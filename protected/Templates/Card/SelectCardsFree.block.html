@@ -1,0 +1,7 @@
+<select id="free" class="form-control selectpicker show-tick" name="form[number]">
+    <option data-subtext="{{ card.type }}%" selected>{{ card.number }}</option>
+    <option data-divider="true"></option>
+    {% for card in cards %}
+        <option data-subtext="{{ card.type }}%">{{ card.number }}</option>
+    {% endfor %}
+</select>

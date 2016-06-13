@@ -1,0 +1,43 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><img src="/images/cards.png" alt="" class="pull-left tab-header">
+            <p class="tab-header">
+                Карты
+                <a href="/card/edit" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Добавить
+                </a>
+            </p>
+        </div>
+
+        <div class="panel-body">
+            <!-- Table -->
+            <table class="table table-main">
+                <thead>
+                <tr>
+                    <th width="15%">Номер</th>
+                    <th width="15%">Скидка</th>
+                    <th width="70%">Клиент</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for card in cards %}
+                <tr onclick="window.location='http://' + window.location.hostname + '/card/edit/'+ {{ card.pk }}">
+                    <td>{{ card.number }}</td>
+                    <td>{{ card.type }}%</td>
+                    <td>{{ card.custom.name_last }} {{ card.custom.name_first }} {{ card.custom.name_middle }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

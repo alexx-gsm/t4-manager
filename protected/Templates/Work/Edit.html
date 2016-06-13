@@ -1,0 +1,64 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><img src="/images/actions.jpg" alt="" class="pull-left tab-header">
+            <p class="tab-header">
+                Работа
+                <a href="/work/edit/{{ order_id }}" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Добавить
+                </a>
+                <a class="btn btn-default pull-right" href="/order/edit/{{ order_id }}">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                    К заказу
+                </a>
+            </p>
+        </div>
+
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span></div>
+                <div class="panel-body">
+                    <form action="/work/save" method="post">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td width="15%"><label for="action">Услуга</label></td>
+                                <td width="85%"><t4:block path="//Action/Default" id="{{ work.action.pk }}"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="price">Цена</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ruble" aria-hidden="true"></span></span>
+                                        <input id="price" class="form-control" type="text" size="100%" name="form[price]" value="{{ work.price }}" required>
+                                        <span class="input-group-addon">{{ work.action.price }},00</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="count">Количество</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">шт</span>
+                                        <input id="count" class="form-control" type="text" size="100%" name="form[count]" value="{{ work.count }}" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="form[pk]" value="{{ work.pk }}">
+                        <input type="hidden" name="form[order_id]" value="{{ order_id }}">
+                        <hr>
+                        <input class="btn btn-success pull-right" type="submit" value="Сохранить" name="save">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

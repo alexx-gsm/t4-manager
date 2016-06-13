@@ -1,0 +1,64 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading"><img src="/images/action.jpg" alt="" class="pull-left tab-header">
+            <p class="tab-header">
+                Добавление | Редактирование услуги
+                <a href="/action/edit" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Добавить
+                </a>
+                <a href="/actions" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                    К списку
+                </a>
+
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-info">
+                <div class="panel-heading"><span class="glyphicon glyphicon-tint" aria-hidden="true"></span></div>
+                <div class="panel-body">
+                    {% for error in errors %}
+                    <div class="alert alert-danger">
+                        {{ error.message }}
+                    </div>
+                    {% endfor %}
+
+                    <form action="/action/save" method="post">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td width="15%"><label for="title">Название</label></td>
+                                <td width="85%">
+                                    <input id="title" class="form-control" type="text" size="100%" name="form[title]" value="{{ action.title }}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Категория</td>
+                                <td><t4:block path="//Category/Default" id="{{ parent_id }}"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="price">Стоимость</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-ruble" aria-hidden="true"></span></span>
+                                        <input id="price" class="form-control" type="text" size="100%" name="form[price]" value="{{ action.price }}" required>
+                                        <span class="input-group-addon">.00</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="form[pk]" value="{{action.pk}}">
+                        <hr>
+                        <input class="btn btn-success pull-right" type="submit" value="Сохранить" name="save">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

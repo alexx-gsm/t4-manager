@@ -1,0 +1,76 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading"><img src="/images/object.png" alt="" class="pull-left tab-header">
+            <p class="tab-header">
+                Объект
+                <a href="/object/edit" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Добавить
+                </a>
+                <a href="/objects" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                    К списку
+                </a>
+
+            </p>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-warning">
+                <div class="panel-heading"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;
+                    Информация об объекте
+                </div>
+                <div class="panel-body">
+                    {% for error in errors %}
+                    <div class="alert alert-danger">
+                        {{ error.message }}
+                    </div>
+                    {% endfor %}
+
+                    <form action="/object/save" method="post">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td width="15%"><label for="title">Название</label></td>
+                                <td width="85%">
+                                    <input id="title" class="form-control" type="text" size="100%" name="form[title]" value="{{ object.title }}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="city">Город</label></td>
+                                <td>
+                                    <input id="city" class="form-control" type="text" size="100%" name="form[city]" value="{{ object.city }}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="street">Улица</label></td>
+                                <td>
+                                    <input id="street" class="form-control" type="text" size="100%" name="form[street]" value="{{ object.street }}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="building">Строение</label></td>
+                                <td>
+                                    <input id="building" class="form-control" type="text" size="100%" name="form[building]" value="{{ object.building }}" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="office">Офис</label></td>
+                                <td>
+                                    <input id="office" class="form-control" type="text" size="100%" name="form[office]" value="{{ object.office }}" required>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="form[pk]" value="{{object.pk}}">
+                        <hr>
+                        <input class="btn btn-success pull-right" type="submit" value="Сохранить" name="save">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

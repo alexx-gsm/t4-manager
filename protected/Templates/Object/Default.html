@@ -1,0 +1,47 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><img src="/images/object.png" alt="" class="pull-left tab-header">
+            <p class="tab-header">
+                Объекты
+                <a href="/object/edit" class="btn btn-default pull-right">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Добавить
+                </a>
+            </p>
+        </div>
+
+        <div class="panel-body">
+
+            <table class="table table-main">
+                <thead>
+                    <tr>
+                        <th width="40%">Название</th>
+                        <th width="20%">Город</th>
+                        <th width="20%">Улица</th>
+                        <th width="10%">Строение</th>
+                        <th width="10%">Офис</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for object in objects %}
+                    <tr onclick="window.location='http://' + window.location.hostname + '/object/edit/{{ object.pk }}.html'">
+                        <td>{{ object.title }}</td>
+                        <td>{{ object.city }}</td>
+                        <td>{{ object.street }}</td>
+                        <td>{{ object.building }}</td>
+                        <td>{{ object.office }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

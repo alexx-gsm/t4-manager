@@ -1,0 +1,18 @@
+<table class="table table-main">
+    <thead>
+    <tr>
+        <th width="40%">Объект</th>
+        <th width="20%">Всего</th>
+        <th width="10%">Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+    <tr onclick="window.location='http://' + window.location.hostname + '/order/edit/{{ order.pk }}.html'">
+        <td>{{ order.object.title }}: {{ order.object.street }}, {{ order.object.building }}-{{ order.object.office }}</td>
+        <td>{{ order.total }} <span class="glyphicon glyphicon-ruble" aria-hidden="true"></span></td>
+        <td>{{ order.date }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

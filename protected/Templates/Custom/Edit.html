@@ -1,0 +1,117 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><img src="/images/client.jpg" alt="" class="pull-left tab-header">
+            <p class="tab-header">
+                Клиент
+                <a class="btn btn-default pull-right" href="/custom/edit">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    Добавить
+                </a>
+                <a class="btn btn-default pull-right" href="/customs">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                    К списку
+                </a>
+
+            </p>
+        </div>
+
+        <div class="panel-body">
+
+
+            <form action="/custom/save" method="post">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-user"></span>
+                        ФИО
+                        <p class="pull-right">{{ custom.name_last }} {{ custom.name_first }} {{ custom.name_middle }}</p>
+                    </div>
+                    <div class="panel-body">
+                        {% for error in errors %}
+                        <div class="alert alert-danger">
+                            {{ error.message }}
+                        </div>
+                        {% endfor %}
+                        <table class="table" width="100%">
+                            <tr>
+                                <td width="15%"><label for="name-last">Фамилия</label></td>
+                                <td width="85%"><input name="form[name_last]" id="name-last" class="form-control" type="text" size="100%" value="{{ custom.name_last }}" required></td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><label for="name-first">Имя</label></td>
+                                <td width="85%"><input name="form[name_first]" id="name-first" class="form-control" type="text" size="100%" value="{{ custom.name_first }}" required></td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><label for="name-middle">Отчество</label></td>
+                                <td width="85%"><input name="form[name_middle]" id="name-middle" class="form-control" type="text" size="100%" value="{{ custom.name_middle }}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pushpin" aria-hidden="false"></span>
+                        Контакты
+                        <p class="pull-right"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ custom.phone }}&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ custom.email }}</p>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table" width="100%">
+                            <tr>
+                                <td width="15%"><label for="phone">Телефон</label></td>
+                                <td width="85%"><input name="form[phone]" id="phone" class="form-control" type="text" size="100%" value="{{ custom.phone }}" required></td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><label for="e-mail">Почта</label></td>
+                                <td width="85%"><input name="form[email]" id="e-mail" class="form-control" type="text" size="100%" value="{{ custom.email }}" required></td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><label for="other">Другое</label></td>
+                                <td width="85%"><input name="form[other]" id="other" class="form-control" type="text" size="100%" value="{{ custom.other }}" placeholder="ICQ=..."></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-credit-card" aria-hidden="false"></span>
+                        Карта
+                        <p class="pull-right">№ {{ custom.card.number }}: {{ custom.card.type }}%</p>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td width="15%"><label for="free">Карта клиента : </label></td>
+                                <td width="85%"><t4:block path="//card/selectcardsfree" id="{{ custom.card.pk }}" /></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-success pull-right btn-ok" value="Сохранить">
+                <div style="clear: both"></div>
+                <input type="hidden" name="form[pk]" value="{{ custom.pk }}">
+            </form>
+
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-rub" aria-hidden="false"></span>
+                    Все заказы
+                    <p class="pull-right">TOTAL</p>
+                </div>
+                <div class="panel-body">
+                    <t4:block path="//Order/SelectAllByCustom" id="{{ custom.pk }}" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
